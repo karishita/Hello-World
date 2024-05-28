@@ -1,7 +1,9 @@
 import java.net.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.text.*;
 import java.io.*;
+import java.util.*;
 public class dateServer {
     public static void main(String args[])
     {
@@ -21,10 +23,14 @@ public class dateServer {
             System.out.println("client request"+ request);
             if("GET_DATE".equalsIgnoreCase(request))
             {
-                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-                LocalDateTime now = LocalDateTime.now();
-                String date=dtf.format(now);
-                wr.println(date + "\n");
+                // DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                //LocalDateTime now = LocalDateTime.now();
+                //String date=dtf.for;mat(now)
+                //wr.println(date + "\n");
+                SimpleDateFormat df=new SimpleDateFormat("dd/MM/YYYY  HH:mm:ss");
+                Date date=new Date();
+                String response=df.format(date);
+                wr.println(response +"\n");
             }
             else
             {

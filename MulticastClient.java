@@ -10,16 +10,7 @@ public class MulticastClient {
             MulticastSocket ms=new MulticastSocket(port);
             InetAddress group=InetAddress.getByName(address);
             
-            NetworkInterface networkInterface = null;
-            Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
-            while (networkInterfaces.hasMoreElements()) {
-                NetworkInterface ni = networkInterfaces.nextElement();
-                if (!ni.isLoopback() && ni.isUp()) {
-                    networkInterface = ni;
-                    break;
-                }
-            }
-            ms.joinGroup(new java.net.InetSocketAddress(group, port), networkInterface);
+             ms.join(group, NetworkInterface.getByInetAddress(InetAddress.getLocalHost()));
             System.out.println("Multicast Client is Running");
             byte[] recieveData=new byte[1024];
             DatagramPacket recievePacket=new DatagramPacket(recieveData,recieveData.length);
